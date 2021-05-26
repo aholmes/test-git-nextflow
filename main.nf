@@ -1,5 +1,9 @@
 nextflow.enable.dsl=2
 
+manifest {
+    version = "123"
+}
+
 params.output_dir = 'test_dir'
 process Create_Test_Output {
     publishDir path: params.output_dir, mode: 'copy'
@@ -22,6 +26,7 @@ process Create_Test_Output {
 workflow {
     println "commitid: $workflow.commitId"
     println "revision: $workflow.revision"
+    println "version: ${workflow.manifest.version}"
     Create_Test_Output(
         Channel.fromPath( ["file_one", "file one"].collect() )
     )
