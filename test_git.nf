@@ -20,6 +20,8 @@ process Create_Test_Output {
 }
 
 workflow {
+    println "commitid: $workflow.commitId"
+    println "revision: $workflow.revision"
     Create_Test_Output(
         Channel.fromPath( ["file_one", "file one"].collect() )
     )
